@@ -9,50 +9,74 @@
 #import "ActionViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
-@interface ActionViewController ()
+#define YouDaoAPIkey @"1758340821"
+#define Keyfrom @"MKActionExtension"
 
-@property(strong,nonatomic) IBOutlet UIImageView *imageView;
+@interface ActionViewController ()
 
 @end
 
 @implementation ActionViewController
-
+{
+    __weak IBOutlet UITextView *originalTextView;
+    
+    __weak IBOutlet UITextView *translateTextView;
+    __weak IBOutlet UIActivityIndicatorView *activityView;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     
-    // Get the item[s] we're handling from the extension context.
+    NSArray<NSExtensionItem *> *itemArray = self.extensionContext.inputItems;
     
-    // For example, look for an image and place it into an image view.
-    // Replace this with something appropriate for the type[s] your extension supports.
-    BOOL imageFound = NO;
-    for (NSExtensionItem *item in self.extensionContext.inputItems) {
-        for (NSItemProvider *itemProvider in item.attachments) {
-            if ([itemProvider hasItemConformingToTypeIdentifier:(NSString *)kUTTypeImage]) {
-                // This is an image. We'll load it, then place it in our image view.
-                __weak UIImageView *imageView = self.imageView;
-                [itemProvider loadItemForTypeIdentifier:(NSString *)kUTTypeImage options:nil completionHandler:^(UIImage *image, NSError *error) {
-                    if(image) {
-                        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                            [imageView setImage:image];
-                        }];
-                    }
+    NSExtensionItem *item = itemArray.firstObject;
+    NSArray<NSItemProvider *> *providerArray = item.attachments;
+    
+    NSItemProvider *itemProvider = providerArray.firstObject;
+    if([itemProvider hasItemConformingToTypeIdentifier:(NSString *)kUTTypePlainText]){
+        [itemProvider loadItemForTypeIdentifier:(NSString *)kUTTypePlainText options:nil completionHandler:^(NSString *text, NSError *error) {
+            if(text) {
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    originalTextView.text = text;
+                    
+                    [self youdaoTranslate:text complate:^(NSString *translateText) {
+                        translateTextView.text = translateText;
+                    }];
                 }];
-                
-                imageFound = YES;
-                break;
             }
-        }
-        
-        if (imageFound) {
-            // We only handle one image, so stop looking for more.
-            break;
-        }
+        }];
     }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void)youdaoTranslate:(NSString *)text complate:(void (^)(NSString *))complate{
+    [activityView startAnimating];
+    
+    NSURLSession *shareSession = [NSURLSession sharedSession];
+    text = [text stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    NSString *urlStr = [NSString stringWithFormat:@"http://fanyi.youdao.com/openapi.do?keyfrom=%@&key=%@&type=data&doctype=json&version=1.1&q=%@", Keyfrom, YouDaoAPIkey, text];
+    
+    NSURLSessionDataTask *task = [shareSession dataTaskWithURL:[NSURL URLWithString: urlStr] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        NSArray *resultArray = dic[@"translation"];
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [activityView stopAnimating];
+            complate(resultArray[0]);
+        }];
+    }];
+    [task resume];
+}
+
+- (IBAction)translate:(id)sender {
+    [self youdaoTranslate:originalTextView.text complate:^(NSString *translateText) {
+        translateTextView.text = translateText;
+    }];
 }
 
 - (IBAction)done {

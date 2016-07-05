@@ -43,6 +43,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		FBD6F5511D2BA01000B605D3 /* MKAction.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MKAction.entitlements; sourceTree = "<group>"; };
+		FBD6F5521D2BA03000B605D3 /* MKActionExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MKActionExtension.entitlements; sourceTree = "<group>"; };
 		FBF897BE1D2B5A3400EB398C /* MKActionExtension.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MKActionExtension.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBF897C21D2B5A3400EB398C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FBF897C41D2B5A3400EB398C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 		FBF897C01D2B5A3400EB398C /* MKActionExtension */ = {
 			isa = PBXGroup;
 			children = (
+				FBD6F5521D2BA03000B605D3 /* MKActionExtension.entitlements */,
 				FBF897C41D2B5A3400EB398C /* AppDelegate.h */,
 				FBF897C51D2B5A3400EB398C /* AppDelegate.m */,
 				FBF897C71D2B5A3400EB398C /* ViewController.h */,
@@ -123,6 +126,7 @@
 		FBF897DD1D2B5A7E00EB398C /* MKAction */ = {
 			isa = PBXGroup;
 			children = (
+				FBD6F5511D2BA01000B605D3 /* MKAction.entitlements */,
 				FBF897DE1D2B5A7E00EB398C /* ActionViewController.h */,
 				FBF897DF1D2B5A7E00EB398C /* ActionViewController.m */,
 				FBF897E11D2B5A7E00EB398C /* MainInterface.storyboard */,
@@ -181,9 +185,21 @@
 				TargetAttributes = {
 					FBF897BD1D2B5A3400EB398C = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = DM7XAFH5UF;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 					FBF897DB1D2B5A7E00EB398C = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = DM7XAFH5UF;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -429,6 +445,7 @@
 				FBF897D71D2B5A3500EB398C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FBF897E81D2B5A7E00EB398C /* Build configuration list for PBXNativeTarget "MKAction" */ = {
 			isa = XCConfigurationList;
@@ -437,6 +454,7 @@
 				FBF897EA1D2B5A7E00EB398C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

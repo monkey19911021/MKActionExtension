@@ -16,8 +16,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
 }
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    UIActivityViewController *ctrl = [[UIActivityViewController alloc] initWithActivityItems:@[@"Do any additional setup after loading the view, typically from a nib."] applicationActivities:nil];
+    ctrl.completionWithItemsHandler = ^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError){
+    };
+    [self presentViewController:ctrl animated:YES completion:nil];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
