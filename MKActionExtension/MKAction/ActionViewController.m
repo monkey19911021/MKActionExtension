@@ -8,6 +8,7 @@
 
 #import "ActionViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import <AVFoundation/AVFoundation.h>
 
 #define YouDaoAPIkey @"1758340821"
 #define Keyfrom @"MKActionExtension"
@@ -79,6 +80,16 @@
         }];
     }];
     [task resume];
+}
+
+- (void)speakText:(NSString *)text{
+    AVSpeechSynthesizer *synthesizer = [[AVSpeechSynthesizer alloc]init];
+    AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:text];
+    [utterance setRate:0.1];
+    [synthesizer speakUtterance:utterance];
+}
+- (IBAction)goSpeak:(id)sender {
+    [self speakText: originalTextView.text];
 }
 
 - (IBAction)translate:(id)sender {

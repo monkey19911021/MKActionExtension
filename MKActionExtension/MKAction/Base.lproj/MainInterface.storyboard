@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Image-->
@@ -26,11 +27,18 @@
                                                 <action selector="done" destination="ObA-dk-sSI" id="Qdu-qn-U6V"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="翻译" id="L34-sE-k67">
-                                            <connections>
-                                                <action selector="translate:" destination="ObA-dk-sSI" id="H4o-VR-04r"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <rightBarButtonItems>
+                                            <barButtonItem title="翻译" id="L34-sE-k67">
+                                                <connections>
+                                                    <action selector="translate:" destination="ObA-dk-sSI" id="H4o-VR-04r"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem title="阅读" id="Fdb-ga-gHa">
+                                                <connections>
+                                                    <action selector="goSpeak:" destination="ObA-dk-sSI" id="n0O-mC-L2B"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
                                     </navigationItem>
                                 </items>
                             </navigationBar>

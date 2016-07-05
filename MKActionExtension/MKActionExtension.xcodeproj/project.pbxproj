@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FBD6F5541D2BC89300B605D3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD6F5531D2BC89300B605D3 /* AVFoundation.framework */; };
 		FBF897C31D2B5A3400EB398C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF897C21D2B5A3400EB398C /* main.m */; };
 		FBF897C61D2B5A3400EB398C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF897C51D2B5A3400EB398C /* AppDelegate.m */; };
 		FBF897C91D2B5A3400EB398C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF897C81D2B5A3400EB398C /* ViewController.m */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		FBD6F5511D2BA01000B605D3 /* MKAction.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MKAction.entitlements; sourceTree = "<group>"; };
 		FBD6F5521D2BA03000B605D3 /* MKActionExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MKActionExtension.entitlements; sourceTree = "<group>"; };
+		FBD6F5531D2BC89300B605D3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		FBF897BE1D2B5A3400EB398C /* MKActionExtension.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MKActionExtension.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBF897C21D2B5A3400EB398C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FBF897C41D2B5A3400EB398C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBD6F5541D2BC89300B605D3 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +86,7 @@
 		FBF897B51D2B5A3400EB398C = {
 			isa = PBXGroup;
 			children = (
+				FBD6F5531D2BC89300B605D3 /* AVFoundation.framework */,
 				FBF897C01D2B5A3400EB398C /* MKActionExtension */,
 				FBF897DD1D2B5A7E00EB398C /* MKAction */,
 				FBF897BF1D2B5A3400EB398C /* Products */,
