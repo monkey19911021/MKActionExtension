@@ -26,12 +26,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    
+    [self loadInputItems];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)loadInputItems
+{
+    //1. 从扩展上下文获取 NSExtensionItem 数组
     NSArray<NSExtensionItem *> *itemArray = self.extensionContext.inputItems;
     
+    //2. 从 NSExtensionItem 获取 NSItemProvider 数组
     NSExtensionItem *item = itemArray.firstObject;
     NSArray<NSItemProvider *> *providerArray = item.attachments;
     
+    //3. 加载、获取数据
     NSItemProvider *itemProvider = providerArray.firstObject;
     if([itemProvider hasItemConformingToTypeIdentifier:(NSString *)kUTTypePlainText]){
         [itemProvider loadItemForTypeIdentifier:(NSString *)kUTTypePlainText options:nil completionHandler:^(NSString *text, NSError *error) {
@@ -39,6 +51,7 @@
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                     originalTextView.text = text;
                     
+                    //4. 翻译
                     [self youdaoTranslate:text complate:^(NSString *translateText) {
                         translateTextView.text = translateText;
                     }];
@@ -46,11 +59,6 @@
             }
         }];
     }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
